@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.util.List;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class TasksApplicationTests {
@@ -27,7 +25,7 @@ public class TasksApplicationTests {
     public void testGetTask1() {
         //Given
         //When
-        Task taskOne = dbService.getTask(1l);
+        Task taskOne = dbService.getTaskById(1l);
         //Then
         Assert.assertEquals((long)1, (long)taskOne.getId());
         Assert.assertEquals("test", taskOne.getTitle());
