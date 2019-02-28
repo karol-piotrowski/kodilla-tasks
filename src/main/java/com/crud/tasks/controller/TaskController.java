@@ -24,19 +24,19 @@ public class TaskController {
         return taskMapper.mapToTaskDtoList(service.getAllTasks());
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "getTask/{taskId}")
-    public TaskDto getTask(@PathVariable Long taskId) {
+    @RequestMapping(method = RequestMethod.GET, value = "getTask")
+    public TaskDto getTask(@RequestParam Long taskId) {
         return taskMapper.mapToTaskDto(service.getTaskById(taskId));
     }
 
-    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask/{taskId}")
-    public void deleteTask(@PathVariable Long taskId) {
-
+    @RequestMapping(method = RequestMethod.DELETE, value = "deleteTask")
+    public void deleteTask(@RequestParam Long taskId) {
+        service.deleteTaskById(taskId);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "updateTask")
-    public TaskDto updateTask(TaskDto taskDto) {
-        return new TaskDto(1L, "Edited test title", "Test content");
+    public TaskDto updateTask(@RequestBody TaskDto taskDto) {
+        return taskMapper.mapToTaskDto(service.saveTask(taskMapper.mapToTask(taskDto)));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "createTask", consumes = APPLICATION_JSON_VALUE)
