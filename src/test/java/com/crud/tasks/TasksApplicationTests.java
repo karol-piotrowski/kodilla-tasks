@@ -22,16 +22,6 @@ public class TasksApplicationTests {
     public void contextLoads() {
     }
 
-    @Test
-    public void testGetTask1() {
-        //Given
-        //When
-        Task taskOne = dbService.getTaskById(1l);
-        //Then
-        Assert.assertEquals((long)1, (long)taskOne.getId());
-        Assert.assertEquals("test", taskOne.getTitle());
-        Assert.assertEquals("test1", taskOne.getContent());
-    }
 
 }
 
