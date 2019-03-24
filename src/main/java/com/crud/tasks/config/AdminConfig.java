@@ -10,6 +10,6 @@ public class AdminConfig {
     @Value("${admin.mail}")
     private String adminMail;
 
-    @Value("super_programista@wp.pl")
+    @Value("${spring.mail.sendermail}")
     private String senderMail;
 }
