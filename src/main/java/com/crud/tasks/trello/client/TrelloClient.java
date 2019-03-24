@@ -28,18 +28,6 @@ public class TrelloClient {
     @Autowired
     private TrelloConfig trelloConfig;
 
-//    @Value("${trello.api.endpoint.prod}")
-//    private String trelloApiEndpoint;
-//
-//    @Value("${trello.app.key}")
-//    private String trelloAppKey;
-//
-//    @Value("${trello.app.token}")
-//    private String trelloToken;
-//
-//    @Value("${trello.app.username}")
-//    private String trelloUsername;
-
     @Autowired
     private RestTemplate restTemplate;
 
