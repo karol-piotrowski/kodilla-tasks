@@ -35,7 +35,7 @@ public class SimpleEmailService {
         SimpleMailMessage mailMessage = new SimpleMailMessage();
         mailMessage.setFrom(mail.getMailFrom());
         mailMessage.setTo(mail.getMailTo());
-        if (mail.getToCc()!=null && !"".equals(mail.getToCc())){
+        if (mail.getToCc() != null && !"".equals(mail.getToCc())) {
             mailMessage.setCc(mail.getToCc());
         }
         mailMessage.setSubject(mail.getSubject());
@@ -49,10 +49,13 @@ public class SimpleEmailService {
             messageHelper.setFrom(mail.getMailFrom());
             messageHelper.setTo(mail.getMailTo());
             messageHelper.setSubject(mail.getSubject());
-            messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+            if (mail.getMessage().equals("Please find the status of your tasks in the database below.")) {
+                messageHelper.setText(mailCreatorService.buildDailyTasksEmail(mail.getMessage()), true);
+            } else {
+                messageHelper.setText(mailCreatorService.buildTrelloCardEmail(mail.getMessage()), true);
+            }
         };
     }
-
 
 
 }
