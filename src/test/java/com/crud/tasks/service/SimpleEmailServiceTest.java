@@ -4,10 +4,11 @@ import com.crud.tasks.domain.Mail;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -26,18 +27,11 @@ public class SimpleEmailServiceTest {
         // Given
         Mail mail = new Mail("sender@test.com", "test@test.com", "test2@test.com", "Test", "Test Message");
 
-        SimpleMailMessage mailMessage = new SimpleMailMessage();
-        mailMessage.setFrom(mail.getMailFrom());
-        mailMessage.setTo(mail.getMailTo());
-        mailMessage.setCc(mail.getToCc());
-        mailMessage.setSubject(mail.getSubject());
-        mailMessage.setText(mail.getMessage());
-
         // When
         simpleEmailService.send(mail);
 
         //Then
-        verify(javaMailSender, times(1)).send(mailMessage);
+        verify(javaMailSender, times(1)).send(Matchers.any(MimeMessagePreparator.class));
     }
 
 }
